@@ -13,8 +13,8 @@ body {
 }
 
 .form-signin {
-    width: 100%;
-    max-width: 330px;
+    width: 200%;
+    max-width: 230px;
     padding: 15px;
     margin: auto;
     
@@ -54,3 +54,4 @@ color: #00722c;
     background-attachment: fixed;
     background-size: cover;
 }
+
