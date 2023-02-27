@@ -33,7 +33,7 @@
                         <a class="nav-link" href="Inform.html">Información</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="registro.html">Registrate</a>
+                        <a class="nav-link" href="registro.php">Registrate</a>
                     </li>
                   
                 </ul>
@@ -67,26 +67,44 @@
                 </div>
             </div>
         </main>
+        <?php
+          include("app/conectar.inc.php");
 
-   
+          $con=new conectar();
+          $con->ConectarBD();
+
+                       if(isset($_POST['registro']))
+                       {
+                        
+                        $nombre=$_REQUEST['nombre'];
+                        $email=$_REQUEST['email'];
+                        $password=$_REQUEST['password'];
+
+                        $sql="INSERT INTO usuarios(nombre, email, password) VALUES ('$nombre','$email','$password',)";
+                        
+                       
+
+             }
+                    ?>
+     
             <div class="container">
-                <form class="row g3-mt-3">
+                <form class="row g3-mt-3" action="" method="post">
+               
                 
-                  
     
                     <div class="col-6">
                         <label for="emailInput" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="emailImput">
+                        <input type="email" class="form-control" id="emailImput" name="email">
                     </div>
     
                     <div class="col-6">
                         <label for="inputPass" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="passwordInput">
+                        <input type="password" class="form-control" id="passwordInput" name="password">
                     </div>
     
                     <div class="col-12">
                         <label for="tex" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombreInput">
+                        <input type="text" class="form-control" id="nombreInput" name="nombre">
                     </div>
     
                     <div class="col-12">
@@ -99,9 +117,12 @@
                     </div>
     
                     <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Registrate</button>
+                        <input class="button" type="submit"  name="registro">
+                        
                     </div>
+                 
                     
+                  
                 </form>
             </div>
            

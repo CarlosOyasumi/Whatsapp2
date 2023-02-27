@@ -15,10 +15,7 @@ background-size: cover;
     background: linear-gradient(to right, #243B55, #141E30);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-.Logotipo{
-    width:  50px;
-    padding: 5px 0;
-}
+
 .raya{
 
     background-color: rgb(255, 255, 255);

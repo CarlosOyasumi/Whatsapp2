@@ -1,6 +1,3 @@
-
-
-
 <!doctype html>
 <html lang="es">
 
@@ -37,7 +34,7 @@
                         <a class="nav-link" href="Inform.html">Información</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="registro.html">Registrate</a>
+                        <a class="nav-link" href="registro.php">Registrate</a>
                     </li>
                   
                 </ul>
@@ -58,7 +55,7 @@
                     <p class="lead">Una simple y rapida manera de comunicarse entre empresas 
                     </p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <a href="registro.html" type="button" class="btn btn-warning btn-lg px-4 me-md-2" tabindex="-1" role="button" aria-disabled="true">Registrate </a>
+                        <a href="registro.php" type="button" class="btn btn-warning btn-lg px-4 me-md-2" tabindex="-1" role="button" aria-disabled="true">Registrate </a>
                         <a href="Login.html" type="button" class="btn btn-outline-warning btn-lg px-4" tabindex="-1" role="button" aria-disabled="true">Ingresa</a>
                     </div>
                 </div>
@@ -105,22 +102,22 @@
                     </td>
 
                 </tr>
-
+              
                 <?php
 
                     include("app/conectar.inc.php");
 
                     $con=new conectar();
                     $con->ConectarBD();
-                   
+
                     $sql="SELECT * from usuarios";
                     $result=$con->getCon()->query($sql);
 
-                    while($usuario=$result->fetch_array()){
+                    while($usuario=$result->fetch_assoc()){
                     ?>
-                <tr>
+                    <tr>
                     <td class="col-2">
-                       <?php echo $usuario['id'] ?>
+                    <?php echo $usuario['id'] ?>
                     </td>
 
                     <td class="col-2">
@@ -139,11 +136,10 @@
                     <?php echo $usuario['fecha_registro'] ?>
                     </td>
 
-                </tr>
-                <?php
+                    </tr>
+                    <?php
                     }
-                ?>
-
+                    ?>
             
             </table>
        
