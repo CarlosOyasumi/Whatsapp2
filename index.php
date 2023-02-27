@@ -40,6 +40,7 @@
                 </ul>
             </div>
         </div>
+        <a href="Login.html" type="button" class="btn btn-outline-warning btn-lg px-4" tabindex="-1" role="button" aria-disabled="true">Ingresa</a>
     </nav>
     <!-- ======= Hero Section ======= -->
     <main id="hero">
@@ -103,43 +104,7 @@
 
                 </tr>
               
-                <?php
-
-                    include("app/conectar.inc.php");
-
-                    $con=new conectar();
-                    $con->ConectarBD();
-
-                    $sql="SELECT * from usuarios";
-                    $result=$con->getCon()->query($sql);
-
-                    while($usuario=$result->fetch_assoc()){
-                    ?>
-                    <tr>
-                    <td class="col-2">
-                    <?php echo $usuario['id'] ?>
-                    </td>
-
-                    <td class="col-2">
-                    <?php echo $usuario['nombre'] ?>
-                    </td>
-
-                    <td class="col-2">
-                    <?php echo $usuario['email'] ?>
-                    </td>
-
-                    <td class="col-2">
-                    <?php echo $usuario['password'] ?>
-                    </td>
-
-                    <td class="col-2"> 
-                    <?php echo $usuario['fecha_registro'] ?>
-                    </td>
-
-                    </tr>
-                    <?php
-                    }
-                    ?>
+                
             
             </table>
        
@@ -148,11 +113,38 @@
       </section>
 
       <section >
-      
-          
+      <div class="jumbotron">
+      <div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="jumbotron">
+                <h1 class="display-4">Bienvenido al Chat UNET</h1>
+                <p class="lead">Conéctate al chat UNET para hablar con tus compañeros de la universidad.</p>
+            </div>
         </div>
-
+    </div>
+</div>
+  <h1>¡Nuestro chat es increíble!</h1>
+  <p>¡Descubre por qué nuestro chat es la mejor opción para conectar con tus amigos!</p>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Reglas del chat</h5>
+                    <ul>
+                        <li>Respeta a tus compañeros.</li>
+                        <li>No se permiten insultos ni violencia.</li>
+                        <li>No se permite el uso de lenguaje inapropiado.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
       </section>
+      
 
 
     <!-- Bootstrap JS -->

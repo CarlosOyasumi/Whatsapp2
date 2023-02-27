@@ -67,28 +67,10 @@
                 </div>
             </div>
         </main>
-        <?php
-          include("app/conectar.inc.php");
-
-          $con=new conectar();
-          $con->ConectarBD();
-
-                       if(isset($_POST['registro']))
-                       {
-                        
-                        $nombre=$_REQUEST['nombre'];
-                        $email=$_REQUEST['email'];
-                        $password=$_REQUEST['password'];
-
-                        $sql="INSERT INTO usuarios(nombre, email, password) VALUES ('$nombre','$email','$password',)";
-                        
-                       
-
-             }
-                    ?>
+       
      
             <div class="container">
-                <form class="row g3-mt-3" action="" method="post">
+                <form class="row g3-mt-3" action="app/controlador_registro_usuario.php" method="post" novalidate>
                
                 
     

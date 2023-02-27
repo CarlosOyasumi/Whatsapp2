@@ -19,6 +19,16 @@ class conectar {
             exit;
         }                       
     }
+    public function insertData($nombre, $email, $password) {
+        // Crear consulta para insertar datos
+        $sql = "INSERT INTO usuarios (nombre, email, password) VALUES ('[value-1]','[value-2]','[value-3]','[value-4]','[value-5]','[value-6]')";
+        // Preparar consulta
+        $stmt = $this->con->prepare($sql);
+        // Enlazar parámetros
+        $stmt->bind_param("2", $nombre, $email, $password,"2023-02-25","1");
+        // Ejecutar consulta
+        $stmt->execute();
+      }
 
 
 }
