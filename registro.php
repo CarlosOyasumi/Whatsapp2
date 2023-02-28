@@ -113,7 +113,24 @@
 
         
     
+            <footer>
       
+      
+      <div class="container">
+        <div class="row altura-a-b">
+          <div class="col-12 col-sm-3">
+            <img class="Logotipo" src="img/UNET.png" alt="Bombilla">  
+          </div>
+          <div class="col-12 col-sm-3">
+            <p>Universidad Experimental Nacional del Táchira</p>
+          </div>
+          <div class="col-12 col-sm-3">
+           
+          </div>
+        </div>
+      </div>
+    
+    </footer>
     
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"

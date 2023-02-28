@@ -1,24 +1,4 @@
-<?php
-    if($_SERVER["REQUEST_METHOD"]=="POST")
-    {
-        include("app/conectar.inc.php");
-        $conect=new conectar();
-        $conect->ConectarBD();
 
-        $sql=sprintf("SELECT * FROM usuarios
-                    WHERE email='%s",
-                    $conect->getCon()->real_escape_string($_POST["email"]));
-
-        $conect->getCon()->query($sql);
-
-        $user =$result->fetch_assoc();
-
-        var_dump($user);
-        exit();
-                
-    }
-//Primeros pasos para el login
-?>
 
 
 
@@ -56,12 +36,14 @@
                 <div class="col">
                     <div class="form-signin bg-dark">
                         <form method="post">
-                            <img class="Form-Scrip mb-4" src="img/WhatsApp2_logo.png" alt="" width="72">
+                            <img class="Form-Scrip mb-4 rounded-circle" src="img/WhatsApp2_logo.png" alt="" width="72">
                             <h1 class="h1 mb-2 fw-large">Inicia sesión</h1>
-                
+                            <?php
+                                include("app/controlador_login.php");
+                            ?>
                             <div class="form-floating" id="Usuario">
                                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
-                                <label for="floatingInput">Usuario</label>
+                                <label for="floatingInput">Correo</label>
                             </div>
                             <div class="form-floating">
                                 <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
@@ -69,7 +51,7 @@
                             </div>
                 
                            
-                            <button class="w-100 btn btn-lg btn-dark" type="submit">Inicia</button>
+                            <button class="w-100 btn btn-lg btn-dark" type="submit" name="enviar">Inicia</button>
                             <p class="mt-5 mb-3 text-muted">&copy; 2023 UNET</p>
                         </form>
                     </div>

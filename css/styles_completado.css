@@ -20,3 +20,7 @@ body {
     background-attachment: fixed;
     background-size: cover;
   }
+  footer{
+    background-color: #030201;
+    color: aliceblue;
+}

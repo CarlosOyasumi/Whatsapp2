@@ -40,7 +40,7 @@
                 </ul>
             </div>
         </div>
-        <a href="Login.html" type="button" class="btn btn-outline-warning btn-lg px-4" tabindex="-1" role="button" aria-disabled="true">Ingresa</a>
+        <a href="Login.php" type="button" class="btn btn-outline-warning btn-lg px-4" tabindex="-1" role="button" aria-disabled="true">Ingresa</a>
     </nav>
     <!-- ======= Hero Section ======= -->
     <main id="hero">
@@ -57,7 +57,7 @@
                     </p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                         <a href="registro.php" type="button" class="btn btn-warning btn-lg px-4 me-md-2" tabindex="-1" role="button" aria-disabled="true">Registrate </a>
-                        <a href="Login.html" type="button" class="btn btn-outline-warning btn-lg px-4" tabindex="-1" role="button" aria-disabled="true">Ingresa</a>
+                        <a href="Login.php" type="button" class="btn btn-outline-warning btn-lg px-4" tabindex="-1" role="button" aria-disabled="true">Ingresa</a>
                     </div>
                 </div>
             </div>
@@ -112,45 +112,30 @@
     
       </section>
 
-      <section >
-      <div class="jumbotron">
-      <div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="jumbotron">
-                <h1 class="display-4">Bienvenido al Chat UNET</h1>
-                <p class="lead">Conéctate al chat UNET para hablar con tus compañeros de la universidad.</p>
-            </div>
-        </div>
-    </div>
-</div>
-  <h1>¡Nuestro chat es increíble!</h1>
-  <p>¡Descubre por qué nuestro chat es la mejor opción para conectar con tus amigos!</p>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Reglas del chat</h5>
-                    <ul>
-                        <li>Respeta a tus compañeros.</li>
-                        <li>No se permiten insultos ni violencia.</li>
-                        <li>No se permite el uso de lenguaje inapropiado.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-      </section>
-      
+     
 
-
+    
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
     </script>
 </body>
-
+<footer>
+      
+      
+      <div class="container">
+        <div class="row altura-a-b">
+          <div class="col-12 col-sm-3">
+            <img class="Logotipo" src="img/UNET.png" alt="Bombilla">  
+          </div>
+          <div class="col-12 col-sm-3">
+            <p>Universidad Experimental Nacional del Táchira</p>
+          </div>
+          <div class="col-12 col-sm-3">
+           
+          </div>
+        </div>
+      </div>
+    
+    </footer>
 </html>

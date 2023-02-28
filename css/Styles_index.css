@@ -43,3 +43,7 @@ background-size: cover;
   .card{
     background: -webkit-linear-gradient(to right, #243B55, #141E30);
   }
+  footer{
+    background-color: #030201;
+    color: aliceblue;
+}

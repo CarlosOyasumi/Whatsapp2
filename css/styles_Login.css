@@ -10,6 +10,7 @@ body {
 .Logotipo{
     width:  50px;
     padding: 5px 0;
+    border-radius: 10px 0;
 }
 
 .form-signin {
@@ -65,4 +66,8 @@ color: #00722c;
     border-radius: 10px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
   }
+  footer{
+    background-color: #030201;
+    color: aliceblue;
+}
 
