@@ -85,6 +85,27 @@
         <div class="content">
 
         <div class="container px-3 py-2 d-block" id="centrar">
+
+        <h1>¡Lista de tus amigos!</h1>
+            <div class="row">
+                    
+                    <div class="col-12">
+                        <?php
+                        $sql="SELECT * FROM amistad";
+                        $resultado =$conect->getCon()->query($sql);
+                        while($mostrar=$resultado->fetch_assoc())
+                        {
+                            $i=1;
+                            echo ' <div class="h2 container px-3 py-2 d-block">'.$i.'- '.$mostrar['amigo'].'</div> ';
+                            $i++;
+                        }
+                        
+
+                        ?>
+                    </div>
+                </div>
+
+
             <div class="row">
                 
                 <div class="col-12">
@@ -95,20 +116,26 @@
                     <label for="exampleInputEmail1" class="form-label">Ingrese el correo de la persona que quieras buscar</label>
                     <input class="form-control md-3" type="text" name="texto" placeholder="persona a buscar" >
 			        <input class="btn btn-outline-dark"type="submit" name="Boton" value="Buscar">
-        
+                   
                     </div>
+                    
                 </form>
                 </div>
             </div>
-            <table>
+            <table class="px-3 py-2 d-block">
 		<tbody>
 			<tr>
-				<td>id</td><td>Nombre</td><td>Dirección</td><td>Edad</td>
+				<td>Nombre</td><td>Correo</td>
 			</tr>
+            <tr>
+            
+            </tr>
 			<?php 
- 				 
-                
+ 				 if(empty($_POST["texto"])){
+                    echo ' <div class="alert alert-danger">El campo no puede estar vacio</div>';
 
+                 }else{
+                    
                 $cad="";
                 if(isset($_POST["Boton"])){
                     $cad="where email like '%".$_POST["texto"]."%'";
@@ -116,17 +143,46 @@
                     $sql="select * from usuarios ".$cad."  order by email";
                     $resultado=$conect->getCon()->query($sql);
                     while ($persona=$resultado->fetch_assoc()) {
-                            echo "<tr><td>",$persona['id'],"</td><td>",$persona['nombre'],"</td><td>",$persona['email'],"</td><td>",$persona['nacimiento'],"</td></tr>";
-                            
-                        # code...
+                            echo "</td><td>",$persona['nombre'],"</td><td>",$persona['email'],"</td></tr>";
+                          $amigo=$persona['nombre'];
+                         
+                    }
+                    $sql="INSERT INTO amistad(principal, amigo) VALUES (?,?)";
+                    $stmt = $conect->getCon()->stmt_init();
+                    if( ! $stmt->prepare($sql)){
+                        die("SQL error: ". $conect->getCon()->errno);
+                         }
+                    
+                         $stmt->bind_param("ss",
+                         $user["nombre"],
+                         $amigo
+                         );
+
+                        
+                            if($stmt->execute()){
+                                echo'<div class="alert alert-warning">¡Ahora son amigos!</div>';
+                                
+                                
+                                
+                
+                        }
                     }
 
-                }
                     
-                    
-               ?>
+                 }
+                
+
+                    ?>
+                
+               
 		</tbody>
+       
+
+
 	</table>
+
+        
+
         </div>
         
         </div>
