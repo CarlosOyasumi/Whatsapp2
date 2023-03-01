@@ -87,30 +87,42 @@
         <div class="container px-3 py-2 d-block" id="centrar">
             <div class="row">
                 
-                <div class="col">
+                <div class="col-12">
+                <form name="form1" action="" method="post">
+                    
                     <div class="form-signin bg-light px-3 py-2 d-block">
                     <legend class="h1 px-3 py-2 d-block">¡Encuentra a tus amigos!</legend>
                     <label for="exampleInputEmail1" class="form-label">Ingrese el correo de la persona que quieras buscar</label>
-                    <input type="text" name="texto" placeholder="persona a buscar" >
-			        <input type="submit" name="Boton" value="Buscar">
+                    <input class="form-control md-3" type="text" name="texto" placeholder="persona a buscar" >
+			        <input class="btn btn-outline-dark"type="submit" name="Boton" value="Buscar">
         
                     </div>
+                </form>
                 </div>
             </div>
             <table>
 		<tbody>
 			<tr>
-				<td>Cédula</td><td>Nombre</td><td>Dirección</td><td>Edad</td>
+				<td>id</td><td>Nombre</td><td>Dirección</td><td>Edad</td>
 			</tr>
 			<?php 
  				 
+                
 
-               $cad="";
-               if(isset($_POST["Boton"]))
-               	{
-                    echo"SI";
+                $cad="";
+                if(isset($_POST["Boton"])){
+                    $cad="where email like '%".$_POST["texto"]."%'";
+ 
+                    $sql="select * from usuarios ".$cad."  order by email";
+                    $resultado=$conect->getCon()->query($sql);
+                    while ($persona=$resultado->fetch_assoc()) {
+                            echo "<tr><td>",$persona['id'],"</td><td>",$persona['nombre'],"</td><td>",$persona['email'],"</td><td>",$persona['nacimiento'],"</td></tr>";
+                            
+                        # code...
+                    }
+
                 }
-
+                    
                     
                ?>
 		</tbody>
