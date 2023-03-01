@@ -57,7 +57,7 @@
 
         <div>
             <ul class="list-unstyled px-2">
-               <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"></i>Home</a></li>
+               <li class=""><a href="HOME.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"></i>Home</a></li>
             </ul>
             <ul class="list-unstyled px-2">
                <li class=""><a href="mensajes.php" class="text-decoration-none d-flex justify-content-between px-3 py-2 d-block">
@@ -67,7 +67,7 @@
             </li>
             </ul>
             <ul class="list-unstyled px-2">
-               <li class=""><a href="amigos.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-user-group"></i>Amigos</a></li>
+               <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-user-group"></i>Amigos</a></li>
             </ul>
            
             <hr class="h-color mx-2">
@@ -78,21 +78,53 @@
             </li>
 
             </ul>
-            <a href="app/cerrar_sesion.php" class="btn btn-outline-warning btn-darkgit btn-lg px-4 me-md-2 px-3 py-2 d-block" role="button" id="Back_button">Cerrar sesion</a>
+            <a href="app/cerrar_sesion.php" class="btn btn-outline-danger btn-darkgit btn-lg px-4 me-md-2 px-3 py-2 d-block" role="button" id="Back_button">Cerrar sesion</a>
         </div>
 
         </div>
         <div class="content">
 
+        <div class="container px-3 py-2 d-block" id="centrar">
+            <div class="row">
+                
+                <div class="col">
+                    <div class="form-signin bg-light px-3 py-2 d-block">
+                    <legend class="h1 px-3 py-2 d-block">¡Encuentra a tus amigos!</legend>
+                    <label for="exampleInputEmail1" class="form-label">Ingrese el correo de la persona que quieras buscar</label>
+                    <input type="text" name="texto" placeholder="persona a buscar" >
+			        <input type="submit" name="Boton" value="Buscar">
+        
+                    </div>
+                </div>
+            </div>
+            <table>
+		<tbody>
+			<tr>
+				<td>Cédula</td><td>Nombre</td><td>Dirección</td><td>Edad</td>
+			</tr>
+			<?php 
+ 				 
 
+               $cad="";
+               if(isset($_POST["Boton"]))
+               	{
+                    echo"SI";
+                }
+
+                    
+               ?>
+		</tbody>
+	</table>
         </div>
+        
+        </div>
+    
+  
         
     </div>
 
        
-
-
-
+       
 
 
 

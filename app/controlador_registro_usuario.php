@@ -9,6 +9,7 @@
                     if(empty($_POST["nombre"])){
                         die("El nombre es requerido");
                     }
+                
                     if(strlen($_POST["nombre"])>25)
                     {
                         die("El nombre tiene más de 25 caracteres, escoja otro más pequeño");
@@ -26,10 +27,13 @@
        $nombre=$_REQUEST['nombre'];
        $email=$_REQUEST['email'];
        $password=$_REQUEST['password'];
+       $sexo=$_REQUEST['sexo'];
+       $nacimiento=$_REQUEST['nacimiento'];
+       $status='Online';
+       
 
        print_r($_POST);
-
-       $sql="INSERT INTO usuarios (nombre, email,password) VALUES (?,?,?)";
+       $sql="INSERT INTO usuarios (nombre, email,password,sexo,nacimiento,activo) VALUES (?,?,?,?,?,?)";
 
        $stmt = $conect->getCon()->stmt_init();
 
@@ -37,10 +41,13 @@
                 die("SQL error: ". $conect->getCon()->errno);
        }
 
-       $stmt->bind_param("sss",
-                        $_REQUEST['nombre'],
-                        $_REQUEST['email'],
-                        $_REQUEST['password']
+       $stmt->bind_param("ssssss",
+                        $nombre,
+                        $email,
+                        $password,
+                        $sexo,
+                        $nacimiento,
+                        $status
                         );
         if($stmt->execute()){
                 header('Location: ../completado.html');
@@ -56,6 +63,8 @@
                 die($conect->getCon()->error . "________ " . $conect->getCon()->errno);
         }
 
+
+       
        
 
 

@@ -57,10 +57,10 @@
 
         <div>
             <ul class="list-unstyled px-2">
-               <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"></i>Home</a></li>
+               <li class=""><a href="HOME.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"></i>Home</a></li>
             </ul>
             <ul class="list-unstyled px-2">
-               <li class=""><a href="mensajes.php" class="text-decoration-none d-flex justify-content-between px-3 py-2 d-block">
+               <li class="active"><a href="#" class="text-decoration-none d-flex justify-content-between px-3 py-2 d-block">
                 <span><i class="fa-solid fa-comment"></i>Mensajes </span>
                 <span class="bg-dark rounded-pill text-white py-0 px-2"">00</span>
             </a>

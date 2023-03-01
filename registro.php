@@ -14,9 +14,9 @@
     <!-- Convert this to an external style sheet -->
     <link rel="stylesheet" href="css/Styles_registro.css">
     <!--Validacion de JAVASRIPT--->
-    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js" defer></script>
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js" ></script>
 
-    <script src="js/validacion.js" defer></script>
+    <script src="js/validacion.js" ></script>
 
 
      <nav class="navbar navbar-expand-md navbar-dark fixed-top">
@@ -79,6 +79,12 @@
                
                 
                 <div class="form-registro bg-dark">
+                
+             
+                  <div class="col-12">
+                        <label for="tex" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombreInput" name="nombre" id="nombre">
+                    </div>
                     <div class="col-12">
                         <label for="emailInput" class="form-label">Email</label>
                         <input type="email" class="form-control" id="emailImput" name="email" id="email">
@@ -89,11 +95,28 @@
                         <input type="password" class="form-control" id="passwordInput" name="password" id="password">
                     </div>
     
+                  
                     <div class="col-12">
-                        <label for="tex" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombreInput" name="nombre" id="nombre">
+                    <p>
+
+                                    Género:
+
+                                    <select  class="form-control" id="SexoInput" name="sexo">
+
+                                    <option>Masculino</option>
+
+                                    <option>Femenino</option>
+
+                                    </select>
+
+                                    </p>
+                       
                     </div>
-    
+                    <div class="col-12">
+                        <label for="tex" class="form-label">Fecha de nacimiento</label>
+                        <input type="date" class="form-control" id="nacimientoInput" name="nacimiento" id="nacimiento">
+                    </div>
+
                     <div class="col-12">
                         <div class="form-check">   
                             <input type="checkbox" class="form-check-input" id="checkTermns">
