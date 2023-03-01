@@ -30,7 +30,7 @@
     <body class="text-center" id="hero">
         
     
-        <div class="container">
+    <div class="container" id="centrar">
             <div class="row">
                 
                 <div class="col">

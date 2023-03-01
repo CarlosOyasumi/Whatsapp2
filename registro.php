@@ -13,6 +13,11 @@
 
     <!-- Convert this to an external style sheet -->
     <link rel="stylesheet" href="css/Styles_registro.css">
+    <!--Validacion de JAVASRIPT--->
+    <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js" defer></script>
+
+    <script src="js/validacion.js" defer></script>
+
 
      <nav class="navbar navbar-expand-md navbar-dark fixed-top">
         <div class="container-fluid">
@@ -69,24 +74,24 @@
         </main>
        
      
-            <div class="container">
-                <form class="row g3-mt-3" action="app/controlador_registro_usuario.php" method="post" novalidate>
+            <div class="container" id="Lmao">
+                <form class="row g3-mt-3" action="app/controlador_registro_usuario.php" method="post" id="registro" novalidate>
                
                 
-    
-                    <div class="col-6">
+                <div class="form-registro bg-dark">
+                    <div class="col-12">
                         <label for="emailInput" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="emailImput" name="email">
+                        <input type="email" class="form-control" id="emailImput" name="email" id="email">
                     </div>
     
-                    <div class="col-6">
+                    <div class="col-12">
                         <label for="inputPass" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="passwordInput" name="password">
+                        <input type="password" class="form-control" id="passwordInput" name="password" id="password">
                     </div>
     
                     <div class="col-12">
                         <label for="tex" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombreInput" name="nombre">
+                        <input type="text" class="form-control" id="nombreInput" name="nombre" id="nombre">
                     </div>
     
                     <div class="col-12">
@@ -101,9 +106,10 @@
                     <div class="col-12">
                         <input class="button" type="submit"  name="registro">
                         
-                    </div>
+                        </div>
+                   
                  
-                    
+                        </div>
                   
                 </form>
             </div>
