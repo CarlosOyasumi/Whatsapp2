@@ -1,25 +1,24 @@
-<?php
-        
-        session_start();
-        if(!isset($_SESSION['user_id'])){
-            header("location: login.php");
-        }
+<?php 
+  session_start();
+  if(!isset($_SESSION['user_id'])){
+    header("location: login.php");
+}
 
-        if(isset($_SESSION['user_id']))
-            include("app/conectar.inc.php");
-            $conect=new conectar();
-            $conect->ConectarBD();
+if(isset($_SESSION['user_id'])){
+    include("app/conectar.inc.php");
+    $conect=new conectar();
+    $conect->ConectarBD();
 
-            $sql= "SELECT * FROM usuarios
-                    WHERE id ={$_SESSION["user_id"]}";
+    $sql= "SELECT * FROM usuarios
+            WHERE id ={$_SESSION["user_id"]}";
 
-            $result =$conect->getCon()->query($sql);
+    $result =$conect->getCon()->query($sql);
 
 
-            $user= $result->fetch_assoc();
-        
-        
-        ?>
+    $user= $result->fetch_assoc();
+}
+  
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -110,11 +109,35 @@
 
         <div class="container px-3 py-2 d-block" id="centrar">
             <div>
-        <?php
-                 include("app/users.php")  
-                        
+      
+            <body>
+                    <div class="wrapper">
+                      <section class="chat-area container px-3 py-2 d-block"">
+                        <header>
+                            <div class="container px-3 py-2 d-flex align-items-center"">
+                            <img class="Logotipo2 img-fluid rounded-circle" src="img/Floppa_ICON.png" alt="">
+                      <h3 class="display-4 fs-sm m-2">
+                        Nombre
+                      </h3>
 
-                 ?>
+                            </div>
+                            
+                      </header>
+                        <div class="chat-box">
+
+                        </div>
+                        <form action="#" class="typing-area">
+                          <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
+                          <input type="text" name="message" class="input-field" placeholder="Type a message here..." autocomplete="off">
+                          <button><i class="fab fa-telegram-plane"></i></button>
+                        </form>
+                      </section>
+                    </div>
+
+
+
+
+
 
         </div>
 

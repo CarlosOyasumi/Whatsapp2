@@ -1,6 +1,9 @@
 <?php
         
         session_start();
+        if(!isset($_SESSION['user_id'])){
+            header("location: login.php");
+        }
 
         if(isset($_SESSION['user_id'])){
             include("app/conectar.inc.php");
@@ -47,34 +50,35 @@
     <div class="main-container d-flex">
         <div class="sidebar" id="side_nav">
         <div class="header-box px-2 pt-3 pb-4">
-        <h1 class="h2 fs-4"> Chat   <span class=" h4 bg-white text-dark rounded shadow px-2 me-2"> Arroz </span>
+        <h1 class="h1 fs-4"> Chat   <span class=" h2 bg-white text-dark rounded shadow px-2 me-2"> Arroz </span>
        
         <button class="btn d-md-none d-block close-btn px-1 py-0 text-white"></button>
         
         </h1>
+        <img class="Logotipo img-fluid rounded-circle" src="img/Floppa_ICON.png" alt="">
         <span class="h2">Hola <?= htmlspecialchars($user["nombre"])     ?> </span>
         </div>
 
         <div>
             <ul class="list-unstyled px-2">
-               <li class=""><a href="HOME.php" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"></i>Home</a></li>
+               <li class=""><a href="HOME.php" class="h4 text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"></i>Home</a></li>
             </ul>
             <ul class="list-unstyled px-2">
                <li class=""><a href="mensajes.php" class="text-decoration-none d-flex justify-content-between px-3 py-2 d-block">
-                <span><i class="fa-solid fa-comment"></i>Mensajes </span>
-                <span class="bg-dark rounded-pill text-white py-0 px-2"">00</span>
+                <span><i class="h4 fa-solid fa-comment"></i>Mensajes </span>
+                <span class="h4 bg-dark rounded-pill text-white py-0 px-2"">00</span>
             </a>
             </li>
             </ul>
             <ul class="list-unstyled px-2">
-               <li class="active"><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-user-group"></i>Amigos</a></li>
+               <li class="active"><a href="#" class="h4 text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-user-group"></i>Amigos</a></li>
             </ul>
            
             <hr class="h-color mx-2">
             <ul class="list-unstyled">
 
             <li>
-            <li class=""><a href="#" class="text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"></i>Otros</a></li>
+            <li class=""><a href="#" class="h4 text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"></i>Otros</a></li>
             </li>
 
             </ul>
@@ -173,6 +177,7 @@
                                 $user["nombre"],
                                 $amigo
                                 );
+                                
 
                                 
                                 if($stmt->execute()){
@@ -182,6 +187,21 @@
                                     
                     
                             }
+
+                            $stmt->bind_param("ss",
+                            $amigo,
+                            $user["nombre"]
+                            );
+                            
+
+                            
+                            if($stmt->execute()){
+                                echo'<div class="alert alert-warning">¡Ya pueden conversar!</div>';
+                                
+                                
+                                
+                
+                        }
                         }
 
                     
