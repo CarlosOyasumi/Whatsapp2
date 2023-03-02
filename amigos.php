@@ -93,11 +93,15 @@
                         <?php
                         $sql="SELECT * FROM amistad";
                         $resultado =$conect->getCon()->query($sql);
+                        $i=0;
                         while($mostrar=$resultado->fetch_assoc())
                         {
-                            $i=1;
-                            echo ' <div class="h2 container px-3 py-2 d-block">'.$i.'- '.$mostrar['amigo'].'</div> ';
-                            $i++;
+                            if($user['nombre'] == $mostrar['principal']){
+                                $i+=1;
+                                echo ' <div class="h2 container px-3 py-2 d-block">'.$i.'- '.$mostrar['amigo'].'</div> ';
+                            }
+                            
+                            
                         }
                         
 
@@ -136,42 +140,54 @@
 
                  }else{
                     
-                $cad="";
-                if(isset($_POST["Boton"])){
-                    $cad="where email like '%".$_POST["texto"]."%'";
- 
-                    $sql="select * from usuarios ".$cad."  order by email";
-                    $resultado=$conect->getCon()->query($sql);
-                    while ($persona=$resultado->fetch_assoc()) {
-                            echo "</td><td>",$persona['nombre'],"</td><td>",$persona['email'],"</td></tr>";
-                          $amigo=$persona['nombre'];
-                         
-                    }
-                    $sql="INSERT INTO amistad(principal, amigo) VALUES (?,?)";
-                    $stmt = $conect->getCon()->stmt_init();
-                    if( ! $stmt->prepare($sql)){
-                        die("SQL error: ". $conect->getCon()->errno);
-                         }
-                    
-                         $stmt->bind_param("ss",
-                         $user["nombre"],
-                         $amigo
-                         );
-
+                    $cad="";
+                    if(isset($_POST["Boton"])){
+                        $cad="where email like '%".$_POST["texto"]."%'";
+    
+                        $sql="select * from usuarios ".$cad."  order by email";
+                        $resultado=$conect->getCon()->query($sql);
                         
-                            if($stmt->execute()){
-                                echo'<div class="alert alert-warning">¡Ahora son amigos!</div>';
-                                
-                                
-                                
-                
+                        
+                        while ($persona=$resultado->fetch_assoc()) {
+
+                            echo "</td><td>",$persona['nombre'],"</td><td>",$persona['email'],"</td></tr>";
+                            $amigo=$persona['nombre'];
+                            
                         }
-                    }
+
+                        $sql="SELECT * from amistad";
+                        $resultado = $conect->getCon()->query($sql);
+                        while($usuario=$resultado->fetch_assoc()){
+                            if($usuario['amigo'] == $amigo && $usuario['principal'] == $user['nombre']){
+                                die('<div class="alert alert-warning">Este usuario ya es tu amigo</div>');
+                            }
+                        }
+                        
+                        $sql="INSERT INTO amistad(principal, amigo) VALUES (?,?)";
+                        $stmt = $conect->getCon()->stmt_init();
+                        if( ! $stmt->prepare($sql)){
+                            die("SQL error: ". $conect->getCon()->errno);
+                            }
+                        
+                                $stmt->bind_param("ss",
+                                $user["nombre"],
+                                $amigo
+                                );
+
+                                
+                                if($stmt->execute()){
+                                    echo'<div class="alert alert-warning">¡Ahora son amigos!</div>';
+                                    
+                                    
+                                    
+                    
+                            }
+                        }
 
                     
                  }
                 
-
+                
                     ?>
                 
                
