@@ -14,8 +14,8 @@
        
         while($row=mysqli_fetch_assoc($sql)){
             if(strcmp($user['nombre'],$row['principal'])==0){
-               $output .= '<a href="chat.php?user_id='.$user['id'].'">
-               <div class="main-container d-flex px-3 py-2 d-block">
+               $output .= '<a href="chat.php?user='.$row['amigo'].'">
+               <div class="main-container d-flex px-3 py-2 d-block justify-content between aling-items-center p-2">
                <div style="float:left">
                     <img class="Logotipo2 img-fluid rounded-circle" src="img/Floppa_ICON.png" alt="">
                     </div>

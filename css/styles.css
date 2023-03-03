@@ -14,6 +14,13 @@ body{
   width: 100%;
 
 }
+textarea{
+  resize: none;
+}
+.chat-box{
+  overflow-y: auto;
+  max-height: 50vh;
+}
 .Logotipo{
   width:  200px;
   padding: 5px 0;
@@ -21,6 +28,17 @@ body{
 .Logotipo2{
   width:  100px;
   padding: 5px 0;
+}
+
+.rtext{
+  width: 65%;
+  background: #f8f9fa;
+  color: #444;
+}
+.ltext{
+  width: 65%;
+  background: #32c83e;
+  color: #fff;
 }
 
 #side_nav{

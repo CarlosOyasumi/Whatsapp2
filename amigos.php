@@ -181,7 +181,7 @@
 
                                 
                                 if($stmt->execute()){
-                                    echo'<div class="alert alert-warning">¡Ahora son amigos!</div>';
+                                    echo'<div class="alert alert-info">¡Ahora son amigos!</div>';
                                     
                                     
                                     
@@ -196,7 +196,7 @@
 
                             
                             if($stmt->execute()){
-                                echo'<div class="alert alert-warning">¡Ya pueden conversar!</div>';
+                                echo'<div class="alert alert-info">¡Ya pueden conversar!</div>';
                                 
                                 
                                 

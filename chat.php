@@ -4,7 +4,7 @@
     header("location: login.php");
 }
 
-if(isset($_SESSION['user_id'])){
+if(isset($_SESSION['user_id']))
     include("app/conectar.inc.php");
     $conect=new conectar();
     $conect->ConectarBD();
@@ -16,7 +16,42 @@ if(isset($_SESSION['user_id'])){
 
 
     $user= $result->fetch_assoc();
-}
+
+
+      if(!isset($_GET['user'])){
+        header("Location: HOME.php");
+        exit;
+
+      }
+
+      $sql="SELECT * from usuarios";
+      $resultado = $conect->getCon()->query($sql);
+      while($usuario=$resultado->fetch_assoc()){
+          if($usuario['nombre'] == $_GET["user"] ){
+              $id=$usuario['id'];
+          }
+      }
+      $sql= "SELECT * FROM usuarios
+            WHERE id ={$id}";
+
+      $result2 =$conect->getCon()->query($sql);
+
+
+      $ChatCon= $result2->fetch_assoc();
+
+      if(empty($ChatCon))
+      {
+        header("Location: HOME.php");
+        exit;
+
+      }
+      
+     
+      
+
+
+        
+    
   
 ?>
 
@@ -27,7 +62,7 @@ if(isset($_SESSION['user_id'])){
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Mensajes</title>
+        <title>CHAT </title>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         
         <script src="https://kit.fontawesome.com/7c0880ea98.js" crossorigin="anonymous"></script>
@@ -41,9 +76,26 @@ if(isset($_SESSION['user_id'])){
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         
         <link href="css/styles.css" rel="stylesheet" />
+
+        <script>
+          function ajax(){
+            var req = new XMLHttpRequest();
+            req.onreadystatechange = function(){
+              if(req.readyState == 4 && req.status==200){
+                document.getElementById('chatBox').innerHTML = req.responseText;
+              }
+            }
+            req.open('GET','app/men_chat.php',true);
+            req.send();
+          }
+
+          
+          
+        </script> 
+
     </head>
 
-    <body id="Pagina">
+    <body  >
    
         
     <div class="main-container d-flex">
@@ -83,7 +135,7 @@ if(isset($_SESSION['user_id'])){
                <li class=""><a href="HOME.php" class="h4 text-decoration-none px-3 py-2 d-block"><i class="fa-solid fa-house"></i>Home</a></li>
             </ul>
             <ul class="list-unstyled px-2">
-               <li class="active"><a href="#" class="text-decoration-none d-flex justify-content-between px-3 py-2 d-block">
+               <li class="active"><a href="mensajes.php" class="text-decoration-none d-flex justify-content-between px-3 py-2 d-block">
                 <span><i class="h4 fa-solid fa-comment"></i>Mensajes </span>
                 <span class="h4 bg-dark rounded-pill text-white py-0 px-2"">00</span>
             </a>
@@ -105,7 +157,7 @@ if(isset($_SESSION['user_id'])){
         </div>
 
         </div>
-        <div class="content">
+        <div class="content shadow p-4 rounded ">
 
         <div class="container px-3 py-2 d-block" id="centrar">
             <div>
@@ -117,24 +169,98 @@ if(isset($_SESSION['user_id'])){
                             <div class="container px-3 py-2 d-flex align-items-center"">
                             <img class="Logotipo2 img-fluid rounded-circle" src="img/Floppa_ICON.png" alt="">
                       <h3 class="display-4 fs-sm m-2">
-                        Nombre
+                     <?=$ChatCon["nombre"]?>
                       </h3>
 
                             </div>
                             
                       </header>
-                        <div class="chat-box">
+                        <div class="shadow p-4 rounded d-flex flex-column mt-2  chat-box" id="chatBox">
 
+                        <?php
+
+                          $sql="SELECT * from chat ORDER BY id_mensaje DESC";
+                          $resultado = $conect->getCon()->query($sql);
+                          $output="";
+                          while($usuario=$resultado->fetch_assoc()):
+                            if(strcmp($user['nombre'],$usuario['mensajero'])==0):
+                              ?>
+                              <span style:"color: #1c62c4;" class="rtext align-self-end border rounded p-2 mb-1">
+                              <p class="rtext align-self-end border rounded p-2 mb-1">
+                              <?=htmlspecialchars($usuario["mensajero"]) ?> :   
+                              <?=htmlspecialchars($user["nombre"]) ?> 
+                                <?=htmlspecialchars($usuario["texto"]) ?>
+
+                                <small class="d-block">
+                                  <?=htmlspecialchars($usuario["Tiempo"])?>
+                                </small>
+
+                                </p>
+                                </span>
+                                <?php endif; ?>
+                            <?php  if(strcmp($ChatCon['nombre'],$usuario['receptor'])==0):?>
+                              <span style:"color: #1c62c4;" class="ltext align border rounded p-2 mb-1">
+                              <p class="ltext border rounded p-2 mb-1">
+                              <?=htmlspecialchars($usuario["receptor"]) ?> :   
+                              <?=htmlspecialchars($ChatCon["nombre"]) ?> 
+                              <?=htmlspecialchars($usuario["texto"]) ?>
+                                    <small class="d-block">
+                                    <?=htmlspecialchars($usuario["Tiempo"])?>
+                                    </small>
+                                    </p>
+                              </span>
+                              <?php endif; ?>
+                            
+                            
+                         <?php endwhile; ?>
+                          
+                        
                         </div>
-                        <form action="#" class="typing-area">
-                          <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
-                          <input type="text" name="message" class="input-field" placeholder="Type a message here..." autocomplete="off">
-                          <button><i class="fab fa-telegram-plane"></i></button>
+                        <form action="" class="typing-area" method="post">
+                        <div class="input-group mb-3">
+                          <textarea cols="3"
+                                    name="message"
+                                    class="form-control"></textarea>
+                                    <button class="w-100 btn btn-lg btn-dark" type="submit" name="enviar"><i class="fa-regular fa-paper-plane"></i></button>
+                        
+                        </div>
                         </form>
+                        <?php
+                          if(isset($_POST['enviar']))
+                          {
+                            $mensaje=$_POST['message'];
+
+                            $sql="INSERT INTO chat(mensajero, receptor, texto) VALUES (?,?,?)";
+                            $stmt = $conect->getCon()->stmt_init();
+                            if( ! $stmt->prepare($sql)){
+                                die("SQL error: ". $conect->getCon()->errno);
+                                }
+                            
+                                    $stmt->bind_param("sss",
+                                    $user["nombre"],
+                                    $ChatCon["nombre"],
+                                    $mensaje
+                                    );
+                                    
+    
+                                    
+                                    if($stmt->execute()){
+                                        echo'<div class="alert alert-info">¡Ahora son amigos!</div>';
+                                        
+                                        
+                                        
+                        
+                                }
+                       
+
+                          }
+                       
+                        ?>
+                   
                       </section>
                     </div>
 
-
+          
 
 
 
@@ -148,20 +274,58 @@ if(isset($_SESSION['user_id'])){
         
     </div>
 
-       
+
+
+
+
+
+                <script>
+                  var scrollDown = function(){
+
+                    let chatBox = document.getElementById('chatBox');
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                  }           
+                  scrollDown();
+                  
+                  $(document).ready(function(){
+
+                    $("#sendBtn").on('click', function(){
+                      message=$("#message").val();
+                      if(message == "") {
+                        return;
+                      }
+
+                      $.post("app/insert.php", {
+                        message:message,
+                        receptor:<?=$ChatCon['id']?>
+                      },
+                      function(data,status){
+                          $("#message").val("");
+                          $("#chatBox").append(data);
+                          scrollDown();
+                      }
+                      
+                      
+                      );
+
+                    });
+                  });
+
+
+            </script>
 
 
 
 
 
 
-       
 
 
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
+            <!-- Bootstrap core JS-->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- Core theme JS-->
+            <script src="js/scripts.js"></script>
+            <!--Jquery -->
 
         <script>
             $("sidebar ul li").on('click' , function(){ 
