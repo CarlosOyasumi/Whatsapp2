@@ -45,10 +45,11 @@ if(isset($_SESSION['user_id']))
         exit;
 
       }
+      $sql="SELECT * from chat ORDER BY id_mensaje ASC";
+      $resultado = $conect->getCon()->query($sql);
       
-     
       
-
+      
 
         
     
@@ -177,43 +178,57 @@ if(isset($_SESSION['user_id']))
                       </header>
                         <div class="shadow p-4 rounded d-flex flex-column mt-2  chat-box" id="chatBox">
 
-                        <?php
+                       <?php if(!empty($resultado))
+                            { 
+                              
+                              while($chat=$resultado->fetch_assoc())
+                              {
+                                
+                                if($chat["mensajero"]==$user["nombre"])
+                                {
+                                  if($ChatCon["nombre"]!=$chat["receptor"]){?>
+                                    <div class="alert alert-info">No hay mensajes aún</div>
+                                    <?php break;
 
-                          $sql="SELECT * from chat ORDER BY id_mensaje DESC";
-                          $resultado = $conect->getCon()->query($sql);
-                          $output="";
-                          while($usuario=$resultado->fetch_assoc()):
-                            if(strcmp($user['nombre'],$usuario['mensajero'])==0):
-                              ?>
-                              <span style:"color: #1c62c4;" class="rtext align-self-end border rounded p-2 mb-1">
-                              <p class="rtext align-self-end border rounded p-2 mb-1">
-                              <?=htmlspecialchars($usuario["mensajero"]) ?> :   
-                              <?=htmlspecialchars($user["nombre"]) ?> 
-                                <?=htmlspecialchars($usuario["texto"]) ?>
+                                  }
+                                ?>
+
+                          <p class="rtext align-self-end border rounded p-2 mb-1">
+                              
+                                <?=htmlspecialchars($chat["texto"]) ?>
 
                                 <small class="d-block">
-                                  <?=htmlspecialchars($usuario["Tiempo"])?>
+                                  <?=htmlspecialchars($chat["Tiempo"])?>
                                 </small>
 
                                 </p>
-                                </span>
-                                <?php endif; ?>
-                            <?php  if(strcmp($ChatCon['nombre'],$usuario['receptor'])==0):?>
-                              <span style:"color: #1c62c4;" class="ltext align border rounded p-2 mb-1">
-                              <p class="ltext border rounded p-2 mb-1">
-                              <?=htmlspecialchars($usuario["receptor"]) ?> :   
-                              <?=htmlspecialchars($ChatCon["nombre"]) ?> 
-                              <?=htmlspecialchars($usuario["texto"]) ?>
+
+                                <?php }else{?>
+                                  <p class="ltext border rounded p-2 mb-1">
+                              
+                              <?=htmlspecialchars($chat["texto"]) ?>
                                     <small class="d-block">
-                                    <?=htmlspecialchars($usuario["Tiempo"])?>
+                                    <?=htmlspecialchars($chat["Tiempo"])?>
                                     </small>
                                     </p>
-                              </span>
-                              <?php endif; ?>
+
+                                <?php } 
+                                }
+                                
+                                
+                                
+                                ?>
+                              
                             
-                            
-                         <?php endwhile; ?>
-                          
+
+
+
+                          <?php }else{ ?>
+
+                            <div class="alert alert-info">No hay mensajes aún</div>
+
+
+                          <?php } ?>
                         
                         </div>
                         <form action="" class="typing-area" method="post">
@@ -245,7 +260,7 @@ if(isset($_SESSION['user_id']))
     
                                     
                                     if($stmt->execute()){
-                                        echo'<div class="alert alert-info">¡Ahora son amigos!</div>';
+                                        echo'<div class="alert alert-info">¡Tu mensaje se ha enviado!</div>';
                                         
                                         
                                         
